@@ -2,22 +2,19 @@
 
 LOCALFOLDER=`pwd`
 
-if [ -d $LOCALFOLDER/html ]; then
-    rm -fR $LOCALFOLDER/html/
+if [ -d $LOCALFOLDER/app/html ]; then
+    rm -fR $LOCALFOLDER/app/html/
 fi
 
-mkdir $LOCALFOLDER/html
+mkdir $LOCALFOLDER/app/html
 
 CC=emcc
 
-# CFLAGS="-I$LOCALFOLDER/imgui/include/"
-CFLAGS=""
+CFLAGS="-I$LOCALFOLDER/imgui/include/"
 
-# IMGUI_FILES="$LOCALFOLDER/imgui/src/imgui.cpp $LOCALFOLDER/imgui/src/imgui_draw.cpp $LOCALFOLDER/imgui/src/imgui_impl_sdl.cpp"
-IMGUI_FILES=""
+IMGUI_FILES="$LOCALFOLDER/imgui/src/imgui.cpp $LOCALFOLDER/imgui/src/imgui_draw.cpp $LOCALFOLDER/imgui/src/imgui_impl_sdl.cpp"
 
-# DEMOFILE="$LOCALFOLDER/app/src/imgui_demo.cpp"
-DEMOFILE=""
+DEMOFILE="$LOCALFOLDER/app/src/imgui_demo.cpp"
 
 ENTRYPOINT="$LOCALFOLDER/app/src/main.cpp"
 
@@ -33,11 +30,8 @@ EMSFLAGS="-s USE_SDL=2 -s GL_FFP_ONLY=1 -o"
 # EMSOPTMZ="-O3"
 EMSOPTMZ=""
 
-OUTPUT=$LOCALFOLDER/html/index.html
+OUTPUT=$LOCALFOLDER/app/html/imgui_demo.html
 
-TPLPAGE="--shell-file $LOCALFOLDER/app/src/tpl.html"
-# TPLPAGE=""
+echo "$CC $CFLAGS $IMGUI_FILES $DEMOFILE $ENTRYPOINT $EMSASMJS $EMSDEBUG $EMSFLAGS $OUTPUT $EMSOPTMZ"
 
-echo "$CC $CFLAGS $IMGUI_FILES $DEMOFILE $ENTRYPOINT $EMSASMJS $EMSDEBUG $EMSFLAGS $OUTPUT $EMSOPTMZ $TPLPAGE"
-
-`$CC $CFLAGS $IMGUI_FILES $DEMOFILE $ENTRYPOINT $EMSASMJS $EMSDEBUG $EMSFLAGS $OUTPUT $EMSOPTMZ $TPLPAGE`
+`$CC $CFLAGS $IMGUI_FILES $DEMOFILE $ENTRYPOINT $EMSASMJS $EMSDEBUG $EMSFLAGS $OUTPUT $EMSOPTMZ`
