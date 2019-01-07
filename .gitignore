@@ -32,7 +32,5 @@
 *.app
 
 #myProject directories
-app/html/
+html/
 
-#myScripts
-*.sh
