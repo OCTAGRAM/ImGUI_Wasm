@@ -19,7 +19,8 @@ DEMOFILE="$LOCALFOLDER/app/src/imgui_demo.cpp"
 ENTRYPOINT="$LOCALFOLDER/app/src/main.cpp"
 
 #EMSASMJS=""
-EMSASMJS="--separate-asm"
+#EMSASMJS="--separate-asm"
+EMSASMJS="-s WASM=1"
 
 #EMSDEBUG=""
 EMSDEBUG="-g4"
